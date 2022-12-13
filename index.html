@@ -2,25 +2,24 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Soccer 3D version</title>
-    <meta name="title" content="Soccer SVG Test" />
+    <title>Soccer 2D version</title>
+    <meta name="title" content="Soccer 2D" />
     <script src="./js/controller.js"></script>
     <script src="./js/getData.js"></script>
     <script src="./js/matchInfo.js"></script>
   </head>
-  <body onload="load()">
+  <body onload="load()" style="margin: 0px;">
     <div
       style="
         display: flex;
         align-items: center;
         align-content: center;
         width: 100%;
-        height: 90vh;
+        height: 100vh;
         justify-content: center;
       "
-    >
-              
-      <svg width="950" height="900">
+    >        
+      <svg width="1000" height="773">
         <filter id="shadow" color-interpolation-filters="sRGB">
           <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.7" />
         </filter>
@@ -179,547 +178,18 @@
           </linearGradient>
         </defs>
         <g id = "pitch">
-          <!-- <rect id='pitch-rect' x="150" y="100" width="10" height="10" style="fill:green;stroke:red;stroke-width:5;stroke-opacity:0.9" /> -->
-          <image href="./media/frame3.png" x="100" y="200" width="750" />
-          <!-- <image href="./media/frame1.png" x="100" y="200" width="750" /> -->
-          <!-- <polygon id = "pitch-poly" points="232, 448 718, 448 830, 588 120, 588 " style="fill:cyan;fill-opacity:0.5;" /> -->
-          <g id="Rectangle_Lines_Begin">
-            <line
-              x1="232"
-              y1="448"
-              x2="718"
-              y2="448"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="830"
-              y1="588"
-              x2="718"
-              y2="448"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="232"
-              y1="448"
-              x2="120"
-              y2="588"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="830"
-              y1="588"
-              x2="120"
-              y2="588"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-          </g>
-          <g id="Middle_Line_Begin">
-            <line
-              x1="475"
-              y1="448"
-              x2="475"
-              y2="588"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <ellipse
-              cx="475"
-              cy="508"
-              rx="50"
-              ry="23"
-              stroke="white"
-              stroke-opacity="0.4"
-              style="fill: none;"
-            />
-            <ellipse
-              cx="475"
-              cy="505"
-              rx="3"
-              ry="1"
-              fill="white"
-              fill-opacity="0.4"
-            />
-          </g>
-          <g id="Penaltic_Lines_Begin">
-            <line
-              x1="212"
-              y1="473"
-              x2="293"
-              y2="473"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="738"
-              y1="473"
-              x2="657"
-              y2="473"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="152"
-              y1="546"
-              x2="250"
-              y2="546"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="798"
-              y1="546"
-              x2="700"
-              y2="546"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="293"
-              y1="473"
-              x2="250"
-              y2="546"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="657"
-              y1="473"
-              x2="700"
-              y2="546"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <path
-              d="M 281 492 q 30 12 -16 28"
-              stroke="white"
-              stroke-opacity="0.4"
-              stroke-width="2"
-              fill="none"
-            />
-            <path
-              d="M 669 492 q -30 12 16 28"
-              stroke="white"
-              stroke-opacity="0.4"
-              stroke-width="2"
-              fill="none"
-            />
-          </g>
-          <g id="Goal_Lines_Begin">
-            <line
-              x1="200"
-              y1="488"
-              x2="243"
-              y2="488"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="750"
-              y1="488"
-              x2="707"
-              y2="488"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="168"
-              y1="527"
-              x2="216"
-              y2="527"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="782"
-              y1="527"
-              x2="734"
-              y2="527"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="243"
-              y1="488"
-              x2="216"
-              y2="527"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <line
-              x1="707"
-              y1="488"
-              x2="734"
-              y2="527"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.4;
-              "
-            />
-            <ellipse
-              cx="250"
-              cy="505"
-              rx="2"
-              ry="1"
-              fill="white"
-              fill-opacity="0.4"
-            />
-            <ellipse
-              cx="700"
-              cy="505"
-              rx="2"
-              ry="1"
-              fill="white"
-              fill-opacity="0.4"
-            />
-          </g>
-          <g id="Goal_Door_Begin">
-            <line
-              x1="194"
-              y1="496"
-              x2="194"
-              y2="476"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 3;
-                stroke-opacity: 0.7;
-              "
-            />
-            <line
-              x1="178"
-              y1="496"
-              x2="194"
-              y2="476"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 3;
-                stroke-opacity: 0.7;
-              "
-            />
-            <line
-              x1="178"
-              y1="496"
-              x2="178"
-              y2="516"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 3;
-                stroke-opacity: 0.7;
-              "
-            />
-
-            <line
-              x1="756"
-              y1="496"
-              x2="756"
-              y2="476"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 3;
-                stroke-opacity: 0.7;
-              "
-            />
-            <line
-              x1="772"
-              y1="496"
-              x2="756"
-              y2="476"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 3;
-                stroke-opacity: 0.7;
-              "
-            />
-            <line
-              x1="772"
-              y1="496"
-              x2="772"
-              y2="516"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 3;
-                stroke-opacity: 0.7;
-              "
-            />
-
-            <polygon
-              points="194, 496 194, 476 182, 476 174, 496 "
-              style="
-                fill: white;
-                fill-opacity: 0.2;
-                stroke: white;
-                stroke-opacity: 0.1;
-              "
-            />
-            <polygon
-              points="154, 516 166, 496 182, 476 174, 496 "
-              style="
-                fill: white;
-                fill-opacity: 0.2;
-                stroke: white;
-                stroke-opacity: 0.1;
-              "
-            />
-            <polygon
-              points="154, 516 166, 496 178, 496 178, 516 "
-              style="
-                fill: white;
-                fill-opacity: 0.2;
-                stroke: white;
-                stroke-opacity: 0.1;
-              "
-            />
-            <polygon
-              points="166, 496 178, 496 194, 476 182, 476"
-              style="
-                fill: white;
-                fill-opacity: 0.2;
-                stroke: white;
-                stroke-opacity: 0.1;
-              "
-            />
-
-            <polygon
-              points="756, 496 756, 476 768, 476 776, 496 "
-              style="
-                fill: white;
-                fill-opacity: 0.2;
-                stroke: white;
-                stroke-opacity: 0.1;
-              "
-            />
-            <polygon
-              points="796, 516 784, 496 768, 476 776, 496 "
-              style="
-                fill: white;
-                fill-opacity: 0.2;
-                stroke: white;
-                stroke-opacity: 0.1;
-              "
-            />
-            <polygon
-              points="796, 516 784, 496 772, 496 772, 516 "
-              style="
-                fill: white;
-                fill-opacity: 0.2;
-                stroke: white;
-                stroke-opacity: 0.1;
-              "
-            />
-            <polygon
-              points="784, 496 772, 496 756, 476 768, 476"
-              style="
-                fill: white;
-                fill-opacity: 0.2;
-                stroke: white;
-                stroke-opacity: 0.1;
-              "
-            />
-          </g>
-          <g id="Flag_Begin">
-            <line
-              x1="232"
-              y1="448"
-              x2="232"
-              y2="428"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 3;
-                stroke-opacity: 0.7;
-              "
-            />
-            <line
-              x1="718"
-              y1="448"
-              x2="718"
-              y2="428"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 3;
-                stroke-opacity: 0.7;
-              "
-            />
-            <line
-              x1="830"
-              y1="588"
-              x2="830"
-              y2="568"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 3;
-                stroke-opacity: 0.7;
-              "
-            />
-            <line
-              x1="120"
-              y1="588"
-              x2="120"
-              y2="568"
-              style="
-                stroke: rgb(255, 255, 255);
-                stroke-width: 3;
-                stroke-opacity: 0.7;
-              "
-            />
-
-            <polygon
-              points="232, 428 232, 438 242, 433 "
-              style="
-                fill: red;
-                fill-opacity: 0.6;
-                stroke: white;
-                stroke-opacity: 0.1;
-              "
-            />
-            <polygon
-              points="718, 428 718, 438 728, 433 "
-              style="
-                fill: red;
-                fill-opacity: 0.6;
-                stroke: white;
-                stroke-opacity: 0.1;
-              "
-            />
-            <polygon
-              points="830, 568 830, 578 840, 573 "
-              style="
-                fill: red;
-                fill-opacity: 0.6;
-                stroke: white;
-                stroke-opacity: 0.1;
-              "
-            />
-            <polygon
-              points="120, 568 120, 578 130, 573 "
-              style="
-                fill: red;
-                fill-opacity: 0.6;
-                stroke: white;
-                stroke-opacity: 0.1;
-              "
-            />
-
-            <path
-              d="M 240 448 q -3 6 -12 6"
-              stroke="white"
-              stroke-opacity="0.4"
-              stroke-width="2"
-              fill="none"
-            />
-            <path
-              d="M 710 448 q 3 6 12 6"
-              stroke="white"
-              stroke-opacity="0.4"
-              stroke-width="2"
-              fill="none"
-            />
-            <path
-              d="M 813 588 q 1 -9 7 -11"
-              stroke="white"
-              stroke-opacity="0.4"
-              stroke-width="2"
-              fill="none"
-            />
-            <path
-              d="M 137 588 q -1 -9 -7 -11"
-              stroke="white"
-              stroke-opacity="0.4"
-              stroke-width="2"
-              fill="none"
-            />
-          </g>
-          <g id="Grass_Lines_Begin">
-            <polygon
-              points="232, 448 268, 448 172, 588 120, 588 "
-              style="fill: #040; fill-opacity: 0.1;"
-            />
-            <polygon
-              points="304, 448 339, 448 275, 588 224, 588 "
-              style="fill: #040; fill-opacity: 0.1;"
-            />
-            <polygon
-              points="371, 448 406, 448 374, 588 323, 588 "
-              style="fill: #040; fill-opacity: 0.1;"
-            />
-            <polygon
-              points="440, 448 475, 448 475, 588 424, 588 "
-              style="fill: #040; fill-opacity: 0.1;"
-            />
-            <polygon
-              points="510, 448 544, 448 576, 588 526, 588 "
-              style="fill: #040; fill-opacity: 0.1;"
-            />
-            <polygon
-              points="579, 448 614, 448 678, 588 627, 588 "
-              style="fill: #040; fill-opacity: 0.1;"
-            />
-            <polygon
-              points="646, 448 682, 448 778, 588 725, 588 "
-              style="fill: #040; fill-opacity: 0.1;"
-            />
-          </g>
+          <image href="./media/standard soccer field 2.png" x="0" y="0" width="1000"/>
+          <!-- <polygon points="58, 128 943, 128 943, 716 58, 716 " style="fill:white;" fill-opacity='0.6' /> -->
         </g>
         <g id="Attack_Begin">
           <polygon
             id="homeStatePolygon"
-            points="232, 448 510, 448 550, 505 526, 588 120, 588 "
+            points="58, 128 510, 128 550, 422 526, 716 58, 716 "
             style="fill: url(#none);"
           />
           <polygon
             id="awayStatePolygon"
-            points="400, 505 440, 448 718, 448 830, 588 424, 588 "
+            points="400, 422 440, 128 943, 128 943, 716 424, 716 "
             style="fill: url(#none);"
           />
         </g>
@@ -803,7 +273,7 @@
             "
           />
         </g>
-        <polygon id = "offsideRect" points="232, 448 718, 448 830, 588 120, 588 " style="fill:white;" fill-opacity='0' />
+        <polygon id = "offsideRect" points="58, 128 943, 128 943, 716 58, 716" style="fill:white;" fill-opacity='0' />
         <g id="Ball_Begin">
           <polygon
             id="homeKickPolygon"
@@ -830,36 +300,35 @@
             href="./media/football 2.png"
             x="15"
             y="20"
-            width="10"
+            width="30"
           />
         </g>
         <g id="Alert_Begin">
-          <rect id='stateBoard' x="450" y="508" width="0" height="0" rx = "3" ry = "3" style="fill:black;" />
           <rect id='actionBoard' x="450" y="508" width="0" height="0" rx = "3" ry = "3" style="fill:rgb(0, 20, 0); fill-opacity: 0.5;" />
           <rect id='cardBoard' x="450" y="508" width="0" height="0" rx = "3" ry = "3" style="fill:rgb(255, 0, 0); fill-opacity: 0.9;" />
           <g id = 'subsitution'>
-            <polygon id = "substitutionOut" points="100, 200 300, 200 250, 240 100, 240 " style="fill:black;" fill-opacity = "0" />
+            <polygon id = "substitutionOut" points="30, 127 300, 127 250, 178 30, 178 " style="fill:#033;" fill-opacity = "0.8" />
             <text
               id="substitutionOutPlayer"
               fill="#fff"
-              font-size="16"
+              font-size="24"
               font-family="Verdana"
-              x="115"
-              y="225"
-              fill-opacity="0.9"
+              x="50"
+              y="165"
+              fill-opacity="1"
               text-anchor="start"
-            > </text>
-            <polygon id = "substitutionIn" points="700, 593 850, 593 850, 633 650, 633 " style="fill:black;" fill-opacity = "0" />
+              > </text>
+            <polygon id = "substitutionIn" points="740, 666 960, 666 960, 716 690, 716 " style="fill:black;" fill-opacity = "01" />
             <text
               id="substitutionInPlayer"
               fill="#fff"
-              font-size="16"
+              font-size="24"
               font-family="Verdana"
-              x="835"
-              y="618"
+              x="940"
+              y="703"
               fill-opacity="0.9"
               text-anchor="end"
-            > </text>
+              > </text>
           </g>
           <line
             id="stateBoardLine"
@@ -876,7 +345,7 @@
           <text
             id="ballState"
             fill="#fff"
-            font-size="14"
+            font-size="24"
             font-family="Verdana"
             x="380"
             y="505"
@@ -887,7 +356,7 @@
           <text
             id="holder"
             fill="#a1e36f"
-            font-size="14"
+            font-size="24"
             font-family="Verdana"
             x="380"
             y="520"
@@ -912,7 +381,7 @@
             <text
               id="homeState"
               fill="#fff"
-              font-size="14"
+              font-size="24"
               font-family="Verdana"
               x="380"
               y="505"
@@ -924,7 +393,7 @@
             <text
               id="homeName"
               fill="#a1e36f"
-              font-size="14"
+              font-size="24"
               font-family="Verdana"
               x="380"
               y="520"
@@ -950,7 +419,7 @@
             <text
               id="awayState"
               fill="#fff"
-              font-size="14"
+              font-size="24"
               font-family="Verdana"
               x="500"
               y="505"
@@ -959,7 +428,7 @@
             <text
               id="awayName"
               fill="#a1e36f"
-              font-size="14"
+              font-size="24"
               font-family="Verdana"
               x="500"
               y="520"
@@ -976,7 +445,7 @@
           />
           <image
             href="./media/medical/bag (2).png"
-            x="375"
+            x="400"
             y="340"
             width="200"
             id="injury"
@@ -1004,10 +473,10 @@
             <text
               id="time"
               fill="#fff"
-              font-size="18"
+              font-size="28"
               font-family="Verdana"
-              x="475"
-              y="235"
+              x="500"
+              y="55"
               fill-opacity="1"
               text-anchor="middle"
             >
@@ -1016,10 +485,10 @@
             <text
               id="score"
               fill="#fff"
-              font-size="50"
+              font-size="60"
               font-family="Verdana"
-              x="475"
-              y="300"
+              x="500"
+              y="110"
               fill-opacity="1"
               text-anchor="middle"
             >
@@ -1028,10 +497,10 @@
             <text
               id="period"
               fill="#fff"
-              font-size="14"
+              font-size="24"
               font-family="Verdana"
-              x="475"
-              y="215"
+              x="500"
+              y="25"
               fill-opacity="1"
               text-anchor="middle"
             >
@@ -1040,9 +509,9 @@
             <rect
               id="center_rect"
               x="330"
-              y="480"
-              width="290"
-              height="50"
+              y="350"
+              width="340"
+              height="100"
               style="
                 fill: black;
                 stroke: grey;
@@ -1054,10 +523,10 @@
             <text
               id="center_text"
               fill="#fff"
-              font-size="28"
+              font-size="38"
               font-family="Verdana"
-              x="475"
-              y="515"
+              x="500"
+              y="410"
               fill-opacity="1"
               text-anchor="middle"
             ></text>
@@ -1065,8 +534,8 @@
               id="bottom_rect"
               x="330"
               y="550"
-              width="290"
-              height="70"
+              width="340"
+              height="100"
               rx = "5"
               ry = "5"
               style="
@@ -1080,10 +549,10 @@
             <text
               id="bottom_text"
               fill="#fff"
-              font-size="32"
+              font-size="36"
               font-family="Verdana"
-              x="475"
-              y="580"
+              x="500"
+              y="600"
               fill-opacity="0.71"
               text-anchor="middle"
             ></text>
@@ -1092,8 +561,8 @@
               fill="#fff"
               font-size="24"
               font-family="Verdana"
-              x="475"
-              y="610"
+              x="500"
+              y="640"
               fill-opacity="0.71"
               text-anchor="middle"
             ></text>
@@ -1178,11 +647,9 @@
             id="2_path-5"
           ></path>
         </defs>
-        <g id='teams'>
-          <rect x="115" y="220" width="250" height="60" rx = "3" ry = "3" style="fill:rgb(0, 5, 40); fill-opacity: 0.9;" />
-          <rect x="585" y="220" width="250" height="60" rx = "3" ry = "3" style="fill:rgb(0, 5, 40); fill-opacity: 0.9;" />
-          <g id="leftJersey" fill="none" fill-rule="evenodd" filter="url(#shadow)" transform="scale(0.15)">
-            <g transform="translate(766, 1500)">
+        <g id='teams' filter="url(#shadow)">
+          <g id="leftJersey" fill="none" fill-rule="evenodd" filter="url(#shadow)" transform="scale(0.2)">
+            <g transform="translate(100, 200)">
               <mask id="2_mask-3" fill="#fff">
                 <use xlink:href="#2_path-2"></use>
               </mask>
@@ -1244,8 +711,8 @@
               ></use>
             </g>
           </g>
-          <g id="rightJersey" fill="none" fill-rule="evenodd" filter="url(#shadow)" transform="scale(0.15)">
-            <g transform="translate(5233, 1500)">
+          <g id="rightJersey" fill="none" fill-rule="evenodd" filter="url(#shadow)" transform="scale(0.2)">
+            <g transform="translate(4500, 200)">
               <mask id="3_mask-3" fill="#fff">
                 <use xlink:href="#3_path-2"></use>
               </mask>
@@ -1308,10 +775,10 @@
           <text
               id="homeTeamName"
               fill="#fff"
-              font-size="20"
+              font-size="40"
               font-family="Verdana"
-              x="165"
-              y="257"
+              x="100"
+              y="80"
               fill-opacity="1"
               text-anchor="start"
             >
@@ -1320,10 +787,10 @@
           <text
               id="awayTeamName"
               fill="#fff"
-              font-size="20"
+              font-size="40"
               font-family="Verdana"
-              x="785"
-              y="257"
+              x="900"
+              y="80"
               fill-opacity="1"
               text-anchor="end"
             >
@@ -1331,9 +798,9 @@
             </text>
         </g>
         <g id = 'score-fade-out' style = 'opacity: 0;'>
-          <rect x="115" y="425" width="720" height="100" rx = "3" ry = "3" style="fill:rgb(0, 5, 40); fill-opacity: 0.9;" />
-          <g id="fade_leftJersey" fill="none" fill-rule="evenodd" filter="url(#shadow)" transform="scale(0.15)">
-            <g transform="translate(766, 3000)">
+          <rect x="150" y="375" width="700" height="100" rx = "3" ry = "3" style="fill:rgb(0, 5, 40); fill-opacity: 0.7;" />
+          <g id="fade_leftJersey" fill="none" fill-rule="evenodd" filter="url(#shadow)" transform="scale(0.2)">
+            <g transform="translate(850, 1950)">
               <mask id="fade_2_mask-3" fill="#fff">
                 <use xlink:href="#2_path-2"></use>
               </mask>
@@ -1395,8 +862,8 @@
               ></use>
             </g>
           </g>
-          <g id="fade_rightJersey" fill="none" fill-rule="evenodd" filter="url(#shadow)" transform="scale(0.15)">
-            <g transform="translate(5233, 3000)">
+          <g id="fade_rightJersey" fill="none" fill-rule="evenodd" filter="url(#shadow)" transform="scale(0.2)">
+            <g transform="translate(3850, 1950)">
               <mask id="fade_3_mask-3" fill="#fff">
                 <use xlink:href="#3_path-2"></use>
               </mask>
@@ -1459,10 +926,10 @@
           <text
               id="fade_homeTeamName"
               fill="#fff"
-              font-size="20"
+              font-size="30"
               font-family="Verdana"
-              x="165"
-              y="482"
+              x="240"
+              y="435"
               fill-opacity="1"
               text-anchor="start"
             >
@@ -1471,10 +938,10 @@
           <text
               id="fade_awayTeamName"
               fill="#fff"
-              font-size="20"
+              font-size="30"
               font-family="Verdana"
-              x="785"
-              y="482"
+              x="760"
+              y="435"
               fill-opacity="1"
               text-anchor="end"
             >
@@ -1483,10 +950,10 @@
           <text
               id="fade_score"
               fill="#fff"
-              font-size="50"
+              font-size="60"
               font-family="Verdana"
-              x="475"
-              y="490"
+              x="500"
+              y="450"
               fill-opacity="1"
               text-anchor="middle"
             >
