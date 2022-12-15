@@ -535,7 +535,7 @@
         <g id="Alert_Begin">
           <rect id='actionBoard' x="450" y="508" width="0" height="0" rx = "3" ry = "3" style="fill:rgb(0, 20, 0); fill-opacity: 0.5;" />
           <rect id='cardBoard' x="450" y="508" width="0" height="0" rx = "3" ry = "3" style="fill:rgb(255, 0, 0); fill-opacity: 0.9;" />
-          <g id = 'subsitution'>
+          <g id = 'subsitution' style='display: none;'>
             <polygon id = "substitutionOut" points="30, 127 300, 127 250, 178 30, 178 " style="fill:#033;" fill-opacity = "0.8" />
             <text
               id="substitutionOutPlayer"
@@ -593,7 +593,7 @@
             text-anchor="end"
           >
           </text>
-          <g id="homeStateLabels" transform='translate(100,200)' style='display: block;'>
+          <g id="homeStateLabels" transform='translate(200,400)' style='display: block;'>
             <rect id='homeStateBoard' x="0" y="0" width="300" height="60" rx = "30" ry = "30" style="fill:rgb(0, 20, 0); fill-opacity: 0.3;" />
             <circle cx="30" cy="30" r="30" stroke="black" fill="black" />
             <text
@@ -682,8 +682,8 @@
               </g>
             </g>
           </g>
-          <g id="awayStateLabels" transform='translate(385,493)'style='display: none;'>
-            <rect id='awayStateBoard' x="-200" y="0" width="200" height="60" rx = "30" ry = "30" style="fill:rgb(0, 20, 0); fill-opacity: 0.3;" />
+          <g id="awayStateLabels" transform='translate(600,200)'style='display: block;'>
+            <rect id='awayStateBoard' x="-300" y="0" width="300" height="60" rx = "30" ry = "30" style="fill:rgb(0, 20, 0); fill-opacity: 0.3;" />
             <circle cx="-30" cy="30" r="30" stroke="black" fill="black" />
             <text
               id="awayState"
@@ -805,11 +805,11 @@
           />
         </g>
         <g id="Text Begin">
-          <path d="M 502 15 L 580 15
-           A 15 15, 0, 0, 1, 580 45
+          <path d="M 502 15 L 590 15
+           A 15 15, 0, 0, 1, 590 45
            L 502 45 Z" fill="white" fill-opacity='0.3'/>
-          <path d="M 498 15 L 420 15
-           A 15 15, 0, 0, 0, 420 45
+          <path d="M 498 15 L 410 15
+           A 15 15, 0, 0, 0, 410 45
            L 498 45 Z" fill="white" fill-opacity='0.3'/>
           <text
             id="time"
@@ -1001,7 +1001,7 @@
                 stroke-width: 0;
                 stroke-opacity: 0;
               "
-              fill-opacity = '1'
+              fill-opacity = '0.6'
             />
           <rect
               id="awayTeamNameRect"
@@ -1017,7 +1017,7 @@
                 stroke-width: 0;
                 stroke-opacity: 0;
               "
-              fill-opacity = '1'
+              fill-opacity = '0.6'
             />
           <g id="leftJersey" fill="none" fill-rule="evenodd" filter="url(#shadow)" transform="scale(0.25)">
             <g transform="translate(80, 100)">
