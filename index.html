@@ -9,6 +9,12 @@
     <script src="./js/matchInfo.js"></script>
   </head>
   <body onload="load()" style="margin: 0px;">
+    <style>
+      @font-face {
+        font-family: "InriaSans";
+        src: url("./fonts/InriaSans-Regular.ttf");
+      }
+    </style>
     <div
       style="
         display: flex;
@@ -535,7 +541,7 @@
               id="substitutionOutPlayer"
               fill="#fff"
               font-size="24"
-              font-family="Verdana"
+              font-family="InriaSans"
               x="50"
               y="165"
               fill-opacity="1"
@@ -546,7 +552,7 @@
               id="substitutionInPlayer"
               fill="#fff"
               font-size="24"
-              font-family="Verdana"
+              font-family="InriaSans"
               x="940"
               y="703"
               fill-opacity="0.9"
@@ -569,7 +575,7 @@
             id="ballState"
             fill="#fff"
             font-size="24"
-            font-family="Verdana"
+            font-family="InriaSans"
             x="380"
             y="505"
             fill-opacity="0.9"
@@ -580,55 +586,39 @@
             id="holder"
             fill="#a1e36f"
             font-size="24"
-            font-family="Verdana"
+            font-family="InriaSans"
             x="380"
             y="520"
             fill-opacity="0.9"
             text-anchor="end"
           >
-            
           </text>
-          <g id="homeStateLabels" filter="url(#shadow)">
-            <rect id='homeStateBoard' x="385" y="493" width="100" height="100" rx = "30" ry = "30" style="fill:rgb(0, 20, 0); fill-opacity: 0.1;" />
-            <line
-              id="homeLabelLine"
-              x1="385"
-              y1="493"
-              x2="385"
-              y2="523"
-              style="
-                stroke: rgb(205, 205, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.9;
-              "
-            />
+          <g id="homeStateLabels" transform='translate(100,200)' style='display: block;'>
+            <rect id='homeStateBoard' x="0" y="0" width="300" height="60" rx = "30" ry = "30" style="fill:rgb(0, 20, 0); fill-opacity: 0.3;" />
+            <circle cx="30" cy="30" r="30" stroke="black" fill="black" />
             <text
               id="homeState"
-              fill="#fff"
-              font-size="24"
-              font-family="Verdana"
-              x="380"
-              y="505"
+              fill="#a1e36f"
+              font-size="20"
+              font-family="InriaSans"
+              x="75"
+              y="26"
               fill-opacity="0.9"
-              text-anchor="end"
-            >
-              
-            </text>
+              text-anchor="start"
+            > Ball Safe </text>
             <text
               id="homeName"
-              fill="#a1e36f"
+              fill="#fff"
               font-size="24"
-              font-family="Verdana"
-              x="380"
-              y="520"
+              font-family="InriaSans"
+              x="75"
+              y="52"
               fill-opacity="0.9"
-              text-anchor="end"
-            >
-              
-            </text>
-            <g id='homeJersey' transform='translate(385,493)' opacity='0'>
+              text-anchor="start"
+            > HOME </text>
+            <g id='homeJersey' opacity='1'>
               <g fill="none" fill-rule="evenodd" filter="url(#shadow)" transform="scale(0.15)">
-                <g transform="translate(0, 0)">
+                <g transform="translate(35, 40)">
                   <mask id="2_mask-3" fill="#fff">
                     <use xlink:href="#2_path-2"></use>
                   </mask>
@@ -692,41 +682,32 @@
               </g>
             </g>
           </g>
-          <g id="awayStateLabels" filter="url(#shadow)">
-            <rect id='awayStateBoard' x="385" y="493" width="0" height="0" rx = "30" ry = "30" style="fill:rgb(0, 20, 0); fill-opacity: 0.1;" />
-            <line
-              id="awayLabelLine"
-              x1="495"
-              y1="495"
-              x2="495"
-              y2="525"
-              style="
-                stroke: rgb(205, 205, 255);
-                stroke-width: 2;
-                stroke-opacity: 0.9;
-              "
-            />
+          <g id="awayStateLabels" transform='translate(385,493)'style='display: none;'>
+            <rect id='awayStateBoard' x="-200" y="0" width="200" height="60" rx = "30" ry = "30" style="fill:rgb(0, 20, 0); fill-opacity: 0.3;" />
+            <circle cx="-30" cy="30" r="30" stroke="black" fill="black" />
             <text
               id="awayState"
-              fill="#fff"
-              font-size="24"
-              font-family="Verdana"
-              x="500"
-              y="505"
+              fill="#a1e36f"
+              font-size="20"
+              font-family="InriaSans"
+              x="-75"
+              y="26"
               fill-opacity="0.9"
-            ></text>
+              text-anchor="end"
+            > Attacking</text>
             <text
               id="awayName"
-              fill="#a1e36f"
+              fill="#fff"
               font-size="24"
-              font-family="Verdana"
-              x="500"
-              y="520"
+              font-family="InriaSans"
+              x="-75"
+              y="52"
               fill-opacity="0.9"
-            ></text>
-            <g id='awayJersey' transform='translate(10,10)' opacity='0'>
+              text-anchor="end"
+            > AWAY</text>
+            <g id='awayJersey' opacity='1'>
               <g fill="none" fill-rule="evenodd" filter="url(#shadow)" transform="scale(0.15)">
-                <g transform="translate(0, 0)">
+                <g transform="translate(-350, 40)">
                   <mask id="2_mask-3" fill="#fff">
                     <use xlink:href="#2_path-2"></use>
                   </mask>
@@ -834,7 +815,7 @@
             id="time"
             fill="#fff"
             font-size="22"
-            font-family="Verdana"
+            font-family="InriaSans"
             x="510"
             y="37"
             fill-opacity="1"
@@ -846,7 +827,7 @@
             id="score"
             fill="#fff"
             font-size="60"
-            font-family="Verdana"
+            font-family="InriaSans"
             x="500"
             y="100"
             fill-opacity="1"
@@ -858,7 +839,7 @@
             id="period"
             fill="#fff"
             font-size="22"
-            font-family="Verdana"
+            font-family="InriaSans"
             x="490"
             y="37"
             fill-opacity="1"
@@ -883,7 +864,7 @@
             id="center_text"
             fill="#fff"
             font-size="38"
-            font-family="Verdana"
+            font-family="InriaSans"
             x="500"
             y="410"
             fill-opacity="1"
@@ -909,7 +890,7 @@
             id="bottom_text"
             fill="#fff"
             font-size="36"
-            font-family="Verdana"
+            font-family="InriaSans"
             x="500"
             y="600"
             fill-opacity="0.71"
@@ -919,7 +900,7 @@
             id="bottom2_text"
             fill="#fff"
             font-size="24"
-            font-family="Verdana"
+            font-family="InriaSans"
             x="500"
             y="640"
             fill-opacity="0.71"
@@ -1165,8 +1146,8 @@
           <text
               id="homeTeamName"
               fill="#fff"
-              font-size="34"
-              font-family="Verdana"
+              font-size="30"
+              font-family="InriaSans"
               x="100"
               y="90"
               fill-opacity="1"
@@ -1177,8 +1158,8 @@
           <text
               id="awayTeamName"
               fill="#fff"
-              font-size="34"
-              font-family="Verdana"
+              font-size="30"
+              font-family="InriaSans"
               x="900"
               y="90"
               fill-opacity="1"
@@ -1317,7 +1298,7 @@
               id="fade_homeTeamName"
               fill="#fff"
               font-size="30"
-              font-family="Verdana"
+              font-family="InriaSans"
               x="240"
               y="435"
               fill-opacity="1"
@@ -1329,7 +1310,7 @@
               id="fade_awayTeamName"
               fill="#fff"
               font-size="30"
-              font-family="Verdana"
+              font-family="InriaSans"
               x="760"
               y="435"
               fill-opacity="1"
@@ -1341,7 +1322,7 @@
               id="fade_score"
               fill="#fff"
               font-size="60"
-              font-family="Verdana"
+              font-family="InriaSans"
               x="500"
               y="450"
               fill-opacity="1"
