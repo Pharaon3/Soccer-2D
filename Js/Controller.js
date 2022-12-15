@@ -1,11 +1,11 @@
 var currentState = 0
 
-var topLeft = 232,
-  topPosition = 448
-var pitchX = 710,
-  pitchY = 140
+var topLeft = 58,
+  topPosition = 128
+var pitchX = 885,
+  pitchY = 588
 var w1 = pitchX / 2,
-  w2 = 486 / 2,
+  w2 = 885 / 2,
   hp = pitchY
 var x1 = 0,
   y1 = hp / 2,
@@ -20,7 +20,7 @@ var x = 0,
   y_1 = mapY(0, hp / 2),
   x_b = 0,
   y_b = mapY(0, hp / 2)
-var ballRadius = 15
+var ballRadius = 30
 
 x_1_1 = mapX(x1, y1)
 y_1_1 = mapY(x1, y1)
@@ -100,7 +100,6 @@ function countdown() {
       drawTrack()
       showState()
     }
-    
   }, timeInterval)
 }
 function load() {
@@ -157,7 +156,7 @@ function ballPosition() {
   h1 = ((w2 + ((w1 - w2) / hp) * y) * hh) / w1
   x_b = x_1
   y_b = y_1 - h1
-  ballRadius = mapX(15, y)
+  ballRadius = mapX(20, y)
   xs = x_1_1 + (x_1_2 - x_1_1) * t
   ys = y_1_1 + (y_1_2 - y_1_1) * t
 }
@@ -294,6 +293,7 @@ function drawRect() {
   rt = t * 2
   if (rt > 1) rt = 1
   if (gameState[currentState]['team'] == 'home') {
+    document.getElementById('awayStateBoard').setAttribute('height', '0')
     document.getElementById('homeLabelLine').style.display = 'block'
     document.getElementById('awayLabelLine').style.display = 'none'
     document.getElementById('awayStatePolygon').style.fill = 'url(#none)'
@@ -303,156 +303,162 @@ function drawRect() {
     // Calculate position
     // Game State Label ( Attack state + team name y axis position)
     if ((y2 * 100) / hp < 30) {
-      document.getElementById('homeLabelLine').setAttribute('y1', '493')
-      document.getElementById('homeLabelLine').setAttribute('y2', '523')
-      document.getElementById('homeState').setAttribute('y', '505')
-      document.getElementById('homeName').setAttribute('y', '520')
+      document.getElementById('homeStateBoard').setAttribute('y', '395')
+      document.getElementById('homeStateBoard').setAttribute('height', '65')
+      document.getElementById('homeLabelLine').setAttribute('y1', '400')
+      document.getElementById('homeLabelLine').setAttribute('y2', '455')
+      document.getElementById('homeState').setAttribute('y', '420')
+      document.getElementById('homeName').setAttribute('y', '450')
     } else if ((y2 * 100) / hp < 70) {
-      document.getElementById('homeLabelLine').setAttribute('y1', '453')
-      document.getElementById('homeLabelLine').setAttribute('y2', '483')
-      document.getElementById('homeState').setAttribute('y', '465')
-      document.getElementById('homeName').setAttribute('y', '480')
+      document.getElementById('homeStateBoard').setAttribute('y', '195')
+      document.getElementById('homeStateBoard').setAttribute('height', '65')
+      document.getElementById('homeLabelLine').setAttribute('y1', '200')
+      document.getElementById('homeLabelLine').setAttribute('y2', '255')
+      document.getElementById('homeState').setAttribute('y', '220')
+      document.getElementById('homeName').setAttribute('y', '250')
     } else {
-      document.getElementById('homeLabelLine').setAttribute('y1', '493')
-      document.getElementById('homeLabelLine').setAttribute('y2', '523')
-      document.getElementById('homeState').setAttribute('y', '505')
-      document.getElementById('homeName').setAttribute('y', '520')
+      document.getElementById('homeStateBoard').setAttribute('y', '395')
+      document.getElementById('homeStateBoard').setAttribute('height', '65')
+      document.getElementById('homeLabelLine').setAttribute('y1', '400')
+      document.getElementById('homeLabelLine').setAttribute('y2', '455')
+      document.getElementById('homeState').setAttribute('y', '420')
+      document.getElementById('homeName').setAttribute('y', '450')
     }
     if ((x2 * 50) / w1 + 50 < 50) {
       // Game State Label ( Attack state + team name y axis position)
-      document.getElementById('homeLabelLine').setAttribute('x1', '385')
-      document.getElementById('homeLabelLine').setAttribute('x2', '385')
-      document.getElementById('homeState').setAttribute('x', '380')
-      document.getElementById('homeName').setAttribute('x', '380')
-        document.getElementById('homeState').textContent = 'Ball Safe'
+      document.getElementById('homeLabelLine').setAttribute('x1', '315')
+      document.getElementById('homeLabelLine').setAttribute('x2', '315')
+      document.getElementById('homeState').setAttribute('x', '300')
+      document.getElementById('homeName').setAttribute('x', '300')
+      document.getElementById('homeState').textContent = 'Ball Safe'
+      setHomeStateBoardXH(315)
         // document.getElementById('ball').setAttribute('href', './media/football green.png')
         document.getElementById('homeStatePolygon').style.fill =
           'url(#homeSafe)'
       if (rectId == 0 || rectId == 1) {
-        document.getElementById('homeStatePolygon').points[1].x = 440
-        document.getElementById('homeStatePolygon').points[2].x = 480
-        document.getElementById('homeStatePolygon').points[3].x = 424
+        document.getElementById('homeStatePolygon').points[1].x = 475
+        document.getElementById('homeStatePolygon').points[2].x = 550
+        document.getElementById('homeStatePolygon').points[3].x = 475
       }
       if (rectId == 2) {
         document.getElementById('homeStatePolygon').points[1].x =
-          510 + (440 - 510) * rt
+          600 + (475 - 600) * rt
         document.getElementById('homeStatePolygon').points[2].x =
-          550 + (480 - 550) * rt
+          675 + (550 - 675) * rt
         document.getElementById('homeStatePolygon').points[3].x =
-          526 + (424 - 526) * rt
+          600 + (475 - 600) * rt
       }
       if (rectId == 3) {
         document.getElementById('homeStatePolygon').points[1].x =
-          614 + (440 - 614) * rt
+          800 + (475 - 800) * rt
         document.getElementById('homeStatePolygon').points[2].x =
-          700 + (480 - 700) * rt
+          875 + (550 - 875) * rt
         document.getElementById('homeStatePolygon').points[3].x =
-          678 + (424 - 678) * rt
+          800 + (475 - 800) * rt
       }
       if (rectId < 0) {
         document.getElementById('homeStatePolygon').points[1].x =
-          232 + (440 - 232) * rt
+          58 + (475 - 58) * rt
         document.getElementById('homeStatePolygon').points[2].x =
-          180 + (480 - 180) * rt
+          58 + (550 - 58) * rt
         document.getElementById('homeStatePolygon').points[3].x =
-          120 + (424 - 120) * rt
+          58 + (475 - 58) * rt
       }
       currentRectId = 1
     } else if ((x2 * 50) / w1 + 50 < 75) {
       // Game State Label ( Attack state + team name y axis position)
-      document.getElementById('homeLabelLine').setAttribute('x1', '455')
-      document.getElementById('homeLabelLine').setAttribute('x2', '455')
-      document.getElementById('homeState').setAttribute('x', '450')
-      document.getElementById('homeName').setAttribute('x', '450')
+      document.getElementById('homeLabelLine').setAttribute('x1', '515')
+      document.getElementById('homeLabelLine').setAttribute('x2', '515')
+      document.getElementById('homeState').setAttribute('x', '500')
+      document.getElementById('homeName').setAttribute('x', '500')
       document.getElementById('homeState').textContent = 'Attacking'
+      setHomeStateBoardXH(515)
       // document.getElementById('ball').setAttribute('href', './media/football orange.png')
       document.getElementById('homeStatePolygon').style.fill =
         'url(#homeAttack)'
       currentRectId = 2
       if (rectId == 0 || rectId == 2) {
-        document.getElementById('homeStatePolygon').points[1].x = 510
-        document.getElementById('homeStatePolygon').points[2].x = 550
-        document.getElementById('homeStatePolygon').points[3].x = 526
+        document.getElementById('homeStatePolygon').points[1].x = 600
+        document.getElementById('homeStatePolygon').points[2].x = 675
+        document.getElementById('homeStatePolygon').points[3].x = 600
       }
       if (rectId == 1) {
         document.getElementById('homeStatePolygon').points[1].x =
-          440 + (510 - 440) * rt
+          475 + (600 - 475) * rt
         document.getElementById('homeStatePolygon').points[2].x =
-          480 + (550 - 480) * rt
+          550 + (675 - 550) * rt
         document.getElementById('homeStatePolygon').points[3].x =
-          424 + (526 - 424) * rt
+          475 + (600 - 475) * rt
       }
       if (rectId == 3) {
         document.getElementById('homeStatePolygon').points[1].x =
-          614 + (510 - 614) * rt
+          800 + (600 - 800) * rt
         document.getElementById('homeStatePolygon').points[2].x =
-          700 + (550 - 700) * rt
+          875 + (675 - 875) * rt
         document.getElementById('homeStatePolygon').points[3].x =
-          678 + (526 - 678) * rt
+          800 + (600 - 800) * rt
       }
       if (rectId < 0) {
         document.getElementById('homeStatePolygon').points[1].x =
-          232 + (510 - 232) * rt
+          58 + (600 - 58) * rt
         document.getElementById('homeStatePolygon').points[2].x =
-          180 + (550 - 180) * rt
+          58 + (675 - 58) * rt
         document.getElementById('homeStatePolygon').points[3].x =
-          120 + (526 - 120) * rt
+          58 + (600 - 58) * rt
       }
     } else {
       //Dangerous Attack
       // Game State Label ( Attack state + team name y axis position)
-      document.getElementById('homeLabelLine').setAttribute('x1', '605')
-      document.getElementById('homeLabelLine').setAttribute('x2', '605')
-      document.getElementById('homeState').setAttribute('x', '600')
-      document.getElementById('homeName').setAttribute('x', '600')
+      document.getElementById('homeLabelLine').setAttribute('x1', '715')
+      document.getElementById('homeLabelLine').setAttribute('x2', '715')
+      document.getElementById('homeState').setAttribute('x', '700')
+      document.getElementById('homeName').setAttribute('x', '700')
+      document.getElementById('homeState').textContent = 'Dangerous Attack'
+      setHomeStateBoardXH(715)
       currentRectId = 3
       if (rectId == 0 || rectId == 3) {
-        document.getElementById('homeState').textContent = 'Dangerous Attack'
         // document.getElementById('ball').setAttribute('href', './media/football red.png')
         document.getElementById('homeStatePolygon').style.fill =
           'url(#homeDangerousAttack)'
-        document.getElementById('homeStatePolygon').points[1].x = 614
-        document.getElementById('homeStatePolygon').points[2].x = 700
-        document.getElementById('homeStatePolygon').points[3].x = 678
+        document.getElementById('homeStatePolygon').points[1].x = 800
+        document.getElementById('homeStatePolygon').points[2].x = 875
+        document.getElementById('homeStatePolygon').points[3].x = 800
       }
       if (rectId == 1) {
-        document.getElementById('homeState').textContent = 'Dangerous Attack'
         // document.getElementById('ball').setAttribute('href', './media/football red.png')
         document.getElementById('homeStatePolygon').style.fill =
           'url(#homeDangerousAttack)'
         document.getElementById('homeStatePolygon').points[1].x =
-          440 + (614 - 440) * rt
+          475 + (800 - 475) * rt
         document.getElementById('homeStatePolygon').points[2].x =
-          480 + (700 - 480) * rt
+          550 + (875 - 550) * rt
         document.getElementById('homeStatePolygon').points[3].x =
-          424 + (678 - 424) * rt
+          475 + (800 - 475) * rt
       }
       if (rectId == 2) {
-        document.getElementById('homeState').textContent = 'Dangerous Attack'
         // document.getElementById('ball').setAttribute('href', './media/football red.png')
         document.getElementById('homeStatePolygon').style.fill =
           'url(#homeDangerousAttack)'
         document.getElementById('homeStatePolygon').points[1].x =
-          510 + (614 - 510) * rt
+          600 + (800 - 600) * rt
         document.getElementById('homeStatePolygon').points[2].x =
-          550 + (700 - 550) * rt
+          675 + (875 - 675) * rt
         document.getElementById('homeStatePolygon').points[3].x =
-          526 + (678 - 526) * rt
+          600 + (800 - 600) * rt
       }
       if (rectId < 0) {
-        document.getElementById('homeState').textContent = 'Dangerous Attack'
         // document.getElementById('ball').setAttribute('href', './media/football red.png')
         document.getElementById('homeStatePolygon').style.fill =
           'url(#homeDangerousAttack)'
         document.getElementById('homeStatePolygon').points[1].x =
-          232 + (614 - 232) * rt
+          58 + (800 - 58) * rt
         document.getElementById('homeStatePolygon').points[2].x =
-          180 + (700 - 180) * rt
+          58 + (875 - 58) * rt
         document.getElementById('homeStatePolygon').points[3].x =
-          120 + (678 - 120) * rt
+          58 + (800 - 58) * rt
       }
-    }
-  } else {
+    }} else {
+    document.getElementById('homeStateBoard').setAttribute('height', '0')
     document.getElementById('homeLabelLine').style.display = 'none'
     document.getElementById('awayLabelLine').style.display = 'block'
     document.getElementById('homeStatePolygon').style.fill = 'url(#none)'
@@ -461,166 +467,174 @@ function drawRect() {
     document.getElementById('awayName').textContent = awayteamname.toUpperCase()
     // Game State Label ( Attack state + team name y axis position)
     if ((y2 * 100) / hp < 30) {
-      document.getElementById('awayLabelLine').setAttribute('y1', '493')
-      document.getElementById('awayLabelLine').setAttribute('y2', '523')
-      document.getElementById('awayState').setAttribute('y', '505')
-      document.getElementById('awayName').setAttribute('y', '520')
+      document.getElementById('awayStateBoard').setAttribute('y', '395')
+      document.getElementById('awayStateBoard').setAttribute('height', '65')
+      document.getElementById('awayLabelLine').setAttribute('y1', '400')
+      document.getElementById('awayLabelLine').setAttribute('y2', '455')
+      document.getElementById('awayState').setAttribute('y', '420')
+      document.getElementById('awayName').setAttribute('y', '450')
     } else if ((y2 * 100) / hp < 70) {
-      document.getElementById('awayLabelLine').setAttribute('y1', '453')
-      document.getElementById('awayLabelLine').setAttribute('y2', '483')
-      document.getElementById('awayState').setAttribute('y', '465')
-      document.getElementById('awayName').setAttribute('y', '480')
+      document.getElementById('awayStateBoard').setAttribute('y', '195')
+      document.getElementById('awayStateBoard').setAttribute('height', '65')
+      document.getElementById('awayLabelLine').setAttribute('y1', '200')
+      document.getElementById('awayLabelLine').setAttribute('y2', '255')
+      document.getElementById('awayState').setAttribute('y', '220')
+      document.getElementById('awayName').setAttribute('y', '250')
     } else {
-      document.getElementById('awayLabelLine').setAttribute('y1', '493')
-      document.getElementById('awayLabelLine').setAttribute('y2', '523')
-      document.getElementById('awayState').setAttribute('y', '505')
-      document.getElementById('awayName').setAttribute('y', '520')
+      document.getElementById('awayStateBoard').setAttribute('y', '395')
+      document.getElementById('awayStateBoard').setAttribute('height', '65')
+      document.getElementById('awayLabelLine').setAttribute('y1', '400')
+      document.getElementById('awayLabelLine').setAttribute('y2', '455')
+      document.getElementById('awayState').setAttribute('y', '420')
+      document.getElementById('awayName').setAttribute('y', '450')
     }
     if ((x2 * 50) / w1 + 50 < 25) {
       // Game State Label ( Attack state + team name x axis position)
-      document.getElementById('awayLabelLine').setAttribute('x1', '345')
-      document.getElementById('awayLabelLine').setAttribute('x2', '345')
+      document.getElementById('awayLabelLine').setAttribute('x1', '335')
+      document.getElementById('awayLabelLine').setAttribute('x2', '335')
       document.getElementById('awayState').setAttribute('x', '350')
       document.getElementById('awayName').setAttribute('x', '350')
 
       document.getElementById('awayState').textContent = 'Dangerous Attack'
+      setHomeStateBoardXA(335)
       // document.getElementById('ball').setAttribute('href', './media/football red.png')
       currentRectId = -1
       if (rectId == 0 || rectId == -1) {
         document.getElementById('awayStatePolygon').style.fill =
           'url(#awayDangerousAttack)'
-        document.getElementById('awayStatePolygon').points[1].x = 336
-        document.getElementById('awayStatePolygon').points[0].x = 250
-        document.getElementById('awayStatePolygon').points[4].x = 272
+        document.getElementById('awayStatePolygon').points[1].x = 200
+        document.getElementById('awayStatePolygon').points[0].x = 125
+        document.getElementById('awayStatePolygon').points[4].x = 200
       }
       if (rectId == -2) {
         document.getElementById('awayStatePolygon').style.fill =
           'url(#awayDangerousAttack)'
         document.getElementById('awayStatePolygon').points[1].x =
-          440 + (336 - 440) * rt
+          440 + (200 - 440) * rt
         document.getElementById('awayStatePolygon').points[0].x =
-          400 + (250 - 400) * rt
+          400 + (125 - 400) * rt
         document.getElementById('awayStatePolygon').points[4].x =
-          424 + (272 - 424) * rt
+          424 + (200 - 424) * rt
       }
       if (rectId == -3) {
         document.getElementById('awayStatePolygon').style.fill =
           'url(#awayDangerousAttack)'
         document.getElementById('awayStatePolygon').points[1].x =
-          510 + (336 - 510) * rt
+          525 + (200 - 525) * rt
         document.getElementById('awayStatePolygon').points[0].x =
-          470 + (250 - 470) * rt
+          450 + (125 - 450) * rt
         document.getElementById('awayStatePolygon').points[4].x =
-          526 + (272 - 526) * rt
+          525 + (200 - 525) * rt
       }
       if (rectId > 0) {
         document.getElementById('awayStatePolygon').style.fill =
           'url(#awayDangerousAttack)'
         document.getElementById('awayStatePolygon').points[1].x =
-          718 + (336 - 718) * rt
+          943 + (200 - 943) * rt
         document.getElementById('awayStatePolygon').points[0].x =
-          775 + (250 - 775) * rt
+          943 + (125 - 943) * rt
         document.getElementById('awayStatePolygon').points[4].x =
-          830 + (272 - 830) * rt
+          943 + (200 - 943) * rt
       }
     } else if ((x2 * 50) / w1 + 50 < 50) {
       // Game State Label ( Attack state + team name x axis position)
-      document.getElementById('awayLabelLine').setAttribute('x1', '495')
-      document.getElementById('awayLabelLine').setAttribute('x2', '495')
-      document.getElementById('awayState').setAttribute('x', '500')
-      document.getElementById('awayName').setAttribute('x', '500')
+      document.getElementById('awayLabelLine').setAttribute('x1', '450')
+      document.getElementById('awayLabelLine').setAttribute('x2', '450')
+      document.getElementById('awayState').setAttribute('x', '465')
+      document.getElementById('awayName').setAttribute('x', '465')
 
       document.getElementById('awayState').textContent = 'Attacking'
+      setHomeStateBoardXA(450)
       // document.getElementById('ball').setAttribute('href', './media/football orange.png')
       currentRectId = -2
       if (rectId == 0 || rectId == -2) {
         document.getElementById('awayStatePolygon').style.fill =
           'url(#awayAttack)'
-        document.getElementById('awayStatePolygon').points[1].x = 440
-        document.getElementById('awayStatePolygon').points[0].x = 400
-        document.getElementById('awayStatePolygon').points[4].x = 424
+        document.getElementById('awayStatePolygon').points[1].x = 400
+        document.getElementById('awayStatePolygon').points[0].x = 325
+        document.getElementById('awayStatePolygon').points[4].x = 400
       }
       if (rectId == -1) {
         document.getElementById('awayStatePolygon').style.fill =
           'url(#awayAttack)'
         document.getElementById('awayStatePolygon').points[1].x =
-          336 + (440 - 336) * rt
+          200 + (400 - 200) * rt
         document.getElementById('awayStatePolygon').points[0].x =
-          250 + (400 - 250) * rt
+          125 + (325 - 125) * rt
         document.getElementById('awayStatePolygon').points[4].x =
-          272 + (424 - 272) * rt
+          200 + (400 - 200) * rt
       }
       if (rectId == -3) {
         document.getElementById('awayStatePolygon').style.fill =
           'url(#awayAttack)'
         document.getElementById('awayStatePolygon').points[1].x =
-          510 + (440 - 510) * rt
+          525 + (400 - 525) * rt
         document.getElementById('awayStatePolygon').points[0].x =
-          470 + (400 - 470) * rt
+          450 + (325 - 450) * rt
         document.getElementById('awayStatePolygon').points[4].x =
-          526 + (424 - 526) * rt
+          525 + (400 - 525) * rt
       }
       if (rectId > 0) {
         document.getElementById('awayStatePolygon').style.fill =
           'url(#awayAttack)'
         document.getElementById('awayStatePolygon').points[1].x =
-          718 + (440 - 718) * rt
+          943 + (400 - 943) * rt
         document.getElementById('awayStatePolygon').points[0].x =
-          775 + (400 - 775) * rt
+          943 + (325 - 943) * rt
         document.getElementById('awayStatePolygon').points[4].x =
-          830 + (424 - 830) * rt
+          943 + (400 - 943) * rt
       }
     } else {
       // Game State Label ( Attack state + team name x axis position)
-      document.getElementById('awayLabelLine').setAttribute('x1', '545')
-      document.getElementById('awayLabelLine').setAttribute('x2', '545')
-      document.getElementById('awayState').setAttribute('x', '550')
-      document.getElementById('awayName').setAttribute('x', '550')
+      document.getElementById('awayLabelLine').setAttribute('x1', '635')
+      document.getElementById('awayLabelLine').setAttribute('x2', '635')
+      document.getElementById('awayState').setAttribute('x', '650')
+      document.getElementById('awayName').setAttribute('x', '650')
 
       document.getElementById('awayState').textContent = 'Ball Safe'
+      setHomeStateBoardXA(635)
       // document.getElementById('ball').setAttribute('href', './media/football green.png')
       currentRectId = -3
       if (rectId == 0 || rectId == -3) {
         document.getElementById('awayStatePolygon').style.fill =
           'url(#awaySafe)'
-        document.getElementById('awayStatePolygon').points[1].x = 510
-        document.getElementById('awayStatePolygon').points[0].x = 470
-        document.getElementById('awayStatePolygon').points[4].x = 526
+        document.getElementById('awayStatePolygon').points[1].x = 525
+        document.getElementById('awayStatePolygon').points[0].x = 450
+        document.getElementById('awayStatePolygon').points[4].x = 525
       }
       if (rectId == -2) {
         document.getElementById('awayStatePolygon').style.fill =
           'url(#awaySafe)'
         document.getElementById('awayStatePolygon').points[1].x =
-          440 + (510 - 440) * rt
+          440 + (525 - 440) * rt
         document.getElementById('awayStatePolygon').points[0].x =
-          400 + (470 - 400) * rt
+          400 + (450 - 400) * rt
         document.getElementById('awayStatePolygon').points[4].x =
-          424 + (526 - 424) * rt
+          424 + (525 - 424) * rt
       }
       if (rectId == -1) {
         document.getElementById('awayStatePolygon').style.fill =
           'url(#awaySafe)'
         document.getElementById('awayStatePolygon').points[1].x =
-          336 + (510 - 336) * rt
+          200 + (525 - 200) * rt
         document.getElementById('awayStatePolygon').points[0].x =
-          250 + (470 - 250) * rt
+          125 + (450 - 125) * rt
         document.getElementById('awayStatePolygon').points[4].x =
-          272 + (526 - 272) * rt
+          200 + (525 - 200) * rt
       }
       if (rectId > 0) {
         document.getElementById('awayStatePolygon').style.fill =
           'url(#awaySafe)'
         document.getElementById('awayStatePolygon').points[1].x =
-          718 + (510 - 718) * rt
+          943 + (525 - 943) * rt
         document.getElementById('awayStatePolygon').points[0].x =
-          775 + (470 - 775) * rt
+          943 + (450 - 943) * rt
         document.getElementById('awayStatePolygon').points[4].x =
-          830 + (526 - 830) * rt
+          943 + (525 - 943) * rt
       }
     }
   }
 }
-
 function showState() {
   document.getElementById('actionBoard').setAttribute('width', 0)
   document.getElementById('actionBoard').setAttribute('height', 0)
@@ -642,10 +656,10 @@ function showState() {
   document.getElementById('bottom2_text').textContent = ''
   document.getElementById('center_rect').setAttribute('fill-opacity', 0)
   document.getElementById('center_text').textContent = ''
-  document.getElementById('offsideRect').points[0].x = 232
-  document.getElementById('offsideRect').points[1].x = 718
-  document.getElementById('offsideRect').points[2].x = 830
-  document.getElementById('offsideRect').points[3].x = 120
+  document.getElementById('offsideRect').points[0].x = 58
+  document.getElementById('offsideRect').points[1].x = 943
+  document.getElementById('offsideRect').points[2].x = 943
+  document.getElementById('offsideRect').points[3].x = 58
   document.getElementById('offsideRect').setAttribute('fill-opacity', 0)
   document.getElementById('awayKickPolygon').style.fill = 'url(#none)'
   document.getElementById('homeKickPolygon').style.fill = 'url(#none)'
@@ -656,67 +670,9 @@ function showState() {
     if(gameState[currentState]['team'])showAction()
     if(gameState[currentState]['name'] == 'Yellow card'){
       showAction()
-      document.getElementById('ballState').textContent = gameState[currentState]['name']
-      document.getElementById('holder').textContent = teamNames[gameState[currentState]['team']].toUpperCase()
-      var rectWidth = document.getElementById('ballState').getBBox().width;
-      rectWidth = max(rectWidth, document.getElementById('holder').getBBox().width) + 20
-      document.getElementById('actionBoard').setAttribute('width', rectWidth + 50)
-      document.getElementById('actionBoard').setAttribute('height', 50)
-      document.getElementById('actionBoard').setAttribute('x', x_b + w2 + topLeft - rectWidth - 10 - 50)
-      document.getElementById('actionBoard').setAttribute('y', y_b + topPosition - 50 - 10)
-
-      document.getElementById('cardBoard').setAttribute('width', 30)
-      document.getElementById('cardBoard').setAttribute('height', 50)
-      document.getElementById('cardBoard').setAttribute('x', x_b + w2 + topLeft - rectWidth - 10)
-      document.getElementById('cardBoard').setAttribute('y', y_b + topPosition - 50 - 10)
-      document.getElementById('cardBoard').style.fill = 'url(#ff0)'
-
-      document.getElementById('holder').setAttribute('x', x_b + w2 + topLeft - 20 - 50)
-      document.getElementById('holder').setAttribute('y', y_b + topPosition - 12 - 5)
-      document.getElementById('ballState').setAttribute('x', x_b + w2 + topLeft - 20 - 50)
-      document.getElementById('ballState').setAttribute('y', y_b + topPosition - 37 - 5)
-      document.getElementById('stateBoardLine').setAttribute('stroke-opacity', 0.9)
-      document.getElementById('stateBoardLine').setAttribute('x1', x_b + w2 + topLeft - 15)
-      document.getElementById('stateBoardLine').setAttribute('x2', x_b + w2 + topLeft - 15)
-      document.getElementById('stateBoardLine').setAttribute('y1', y_b + topPosition - 50 - 5)
-      document.getElementById('stateBoardLine').setAttribute('y2', y_b + topPosition - 15)
-      // document.getElementById('stateBoardLine').setAttribute('stroke-opacity', 0)
-      // document.getElementById('bottom_rect').setAttribute('fill-opacity', 0.3)
-      // document.getElementById('bottom_rect').setAttribute('height', 70)
-      // document.getElementById('bottom_text').textContent = teamNames[gameState[currentState]['team']]
-      // document.getElementById('bottom2_text').textContent = gameState[currentState]['player']['name']
     }
     if(gameState[currentState]['name'] == 'Red card'){
       showAction()
-      document.getElementById('ballState').textContent = gameState[currentState]['name']
-      document.getElementById('holder').textContent = teamNames[gameState[currentState]['team']].toUpperCase()
-      var rectWidth = document.getElementById('ballState').getBBox().width;
-      rectWidth = max(rectWidth, document.getElementById('holder').getBBox().width) + 20
-      document.getElementById('actionBoard').setAttribute('width', rectWidth + 50)
-      document.getElementById('actionBoard').setAttribute('height', 50)
-      document.getElementById('actionBoard').setAttribute('x', x_b + w2 + topLeft - rectWidth - 10 - 50)
-      document.getElementById('actionBoard').setAttribute('y', y_b + topPosition - 50 - 10)
-
-      document.getElementById('cardBoard').setAttribute('width', 30)
-      document.getElementById('cardBoard').setAttribute('height', 50)
-      document.getElementById('cardBoard').setAttribute('x', x_b + w2 + topLeft - rectWidth - 10)
-      document.getElementById('cardBoard').setAttribute('y', y_b + topPosition - 50 - 10)
-      document.getElementById('cardBoard').style.fill = 'url(#f00)'
-
-      document.getElementById('holder').setAttribute('x', x_b + w2 + topLeft - 20 - 50)
-      document.getElementById('holder').setAttribute('y', y_b + topPosition - 12 - 5)
-      document.getElementById('ballState').setAttribute('x', x_b + w2 + topLeft - 20 - 50)
-      document.getElementById('ballState').setAttribute('y', y_b + topPosition - 37 - 5)
-      document.getElementById('stateBoardLine').setAttribute('stroke-opacity', 0.9)
-      document.getElementById('stateBoardLine').setAttribute('x1', x_b + w2 + topLeft - 15)
-      document.getElementById('stateBoardLine').setAttribute('x2', x_b + w2 + topLeft - 15)
-      document.getElementById('stateBoardLine').setAttribute('y1', y_b + topPosition - 50 - 5)
-      document.getElementById('stateBoardLine').setAttribute('y2', y_b + topPosition - 15)
-      // document.getElementById('redCard').style.display = 'block'
-      // document.getElementById('bottom_rect').setAttribute('fill-opacity', 0.3)
-      // document.getElementById('bottom_rect').setAttribute('height', 70)
-      // document.getElementById('bottom_text').textContent = teamNames[gameState[currentState]['team']]
-      // document.getElementById('bottom2_text').textContent = gameState[currentState]['player']['name']
     }
     if(gameState[currentState]['type'] == 'goal'){
       showAction()
@@ -739,11 +695,6 @@ function showState() {
     }
     if(gameState[currentState]['type'] == 'throwin'){
      showAction()
-      // document.getElementById('center_rect').setAttribute('fill-opacity', 0.3)
-      // document.getElementById('center_text').textContent = gameState[currentState]['name']
-      // document.getElementById('bottom_rect').setAttribute('fill-opacity', 0.3)
-      // document.getElementById('bottom_rect').setAttribute('height', 40)
-      // document.getElementById('bottom_text').textContent = teamNames[gameState[currentState]['team']]
 
       if (gameState[currentState]['team'] == 'home') {
         document.getElementById('homeKickPolygon').style.fill = 'url(#homeKick)'
@@ -785,12 +736,7 @@ function showState() {
     }
     if(gameState[currentState]['type'] == 'shotofftarget'){
       showAction()
-      // document.getElementById('center_rect').setAttribute('fill-opacity', 0.3)
-      // document.getElementById('center_text').textContent = gameState[currentState]['name']
-      // document.getElementById('bottom_rect').setAttribute('fill-opacity', 0.3)
-      // document.getElementById('bottom_rect').setAttribute('height', 40)
-      // document.getElementById('bottom_text').textContent = teamNames[gameState[currentState]['team']]
-
+      
       if (gameState[currentState]['team'] == 'home') {
         document.getElementById('homeKickPolygon').style.fill = 'url(#homeKick)'
         if(y2 < hp * 0.3 && x2 > w1 * 0.6) document.getElementById('homeKickPolygon').style.fill = 'url(#homeTopKick)'
@@ -869,13 +815,13 @@ function showState() {
     if(gameState[currentState]['type'] == 'offside'){
       showAction()
       if(gameState[currentState]['team'] == 'home'){
-        document.getElementById('offsideRect').points[1].x = ((x2 * 50) / w1 + 50) * (718 - 232) / 100 + 232
-        document.getElementById('offsideRect').points[2].x = ((x2 * 50) / w1 + 50) * (830 - 120) / 100 + 120
+        document.getElementById('offsideRect').points[1].x = x_b + w2 + topLeft
+        document.getElementById('offsideRect').points[2].x = x_b + w2 + topLeft
         document.getElementById('offsideRect').setAttribute('fill-opacity', 0.5)
       } 
       else {
-        document.getElementById('offsideRect').points[0].x = ((x2 * 50) / w1 + 50) * (718 - 232) / 100 + 232
-        document.getElementById('offsideRect').points[3].x = ((x2 * 50) / w1 + 50) * (830 - 120) / 100 + 120
+        document.getElementById('offsideRect').points[0].x = x_b + w2 + topLeft
+        document.getElementById('offsideRect').points[3].x = x_b + w2 + topLeft
         document.getElementById('offsideRect').setAttribute('fill-opacity', 0.5)
       }
     }
@@ -900,7 +846,6 @@ function showState() {
     document.getElementById('awayStateLabels').style.display = 'block'
   }
 }
-
 function remove() {
   document.getElementById('homeStatePolygon').style.fill = 'url(#none)'
   document.getElementById('awayStatePolygon').style.fill = 'url(#none)'
@@ -912,7 +857,7 @@ function remove() {
   document.getElementById('injury').style.display = 'none'
   document.getElementById('yellowCard').style.display = 'none'
   document.getElementById('redCard').style.display = 'none'
-  document.getElementById('stateBoard').setAttribute('fill-opacity', 0)
+  // document.getElementById('stateBoard').setAttribute('fill-opacity', 0)
 
       document.getElementById('cardBoard').setAttribute('width', 0)
       document.getElementById('cardBoard').setAttribute('height', 0)
@@ -925,41 +870,72 @@ function max(a, b) {
   return b;
 }
 function mapX(x11, y11) {
-  x_11 = ((w2 + ((w1 - w2) * y11) / hp) * x11) / w1
+  x_11 = x11
   return x_11
 }
 function mapY(x11, y11) {
-  y_11 = ((y11 * y11) / hp + 1.5 * y11) / 2.5
+  y_11 = y11
   return y_11
 }
 function showAction() {
   document.getElementById('ballState').textContent = gameState[currentState]['name']
   document.getElementById('holder').textContent = teamNames[gameState[currentState]['team']].toUpperCase()
   var rectWidth = document.getElementById('ballState').getBBox().width;
-  rectWidth = max(rectWidth, document.getElementById('holder').getBBox().width) + 20
+  rectWidth = max(rectWidth, document.getElementById('holder').getBBox().width) + 40
   document.getElementById('actionBoard').setAttribute('width', rectWidth)
-  document.getElementById('actionBoard').setAttribute('height', 50)
+  document.getElementById('actionBoard').setAttribute('height', 70)
   document.getElementById('actionBoard').setAttribute('x', x_b + w2 + topLeft - rectWidth - 10)
-  document.getElementById('actionBoard').setAttribute('y', y_b + topPosition - 50 - 10)
+  document.getElementById('actionBoard').setAttribute('y', y_b + topPosition - 75)
   document.getElementById('holder').setAttribute('text-anchor', 'end')
   document.getElementById('ballState').setAttribute('text-anchor', 'end')
-  document.getElementById('holder').setAttribute('x', x_b + w2 + topLeft - 20)
-  document.getElementById('holder').setAttribute('y', y_b + topPosition - 12 - 5)
-  document.getElementById('ballState').setAttribute('x', x_b + w2 + topLeft - 20)
-  document.getElementById('ballState').setAttribute('y', y_b + topPosition - 37 - 5)
+  document.getElementById('holder').setAttribute('x', x_b + w2 + topLeft - 30)
+  document.getElementById('holder').setAttribute('y', y_b + topPosition - 20)
+  document.getElementById('ballState').setAttribute('x', x_b + w2 + topLeft - 30)
+  document.getElementById('ballState').setAttribute('y', y_b + topPosition - 45)
   document.getElementById('stateBoardLine').setAttribute('stroke-opacity', 0.9)
-  document.getElementById('stateBoardLine').setAttribute('x1', x_b + w2 + topLeft - 15)
-  document.getElementById('stateBoardLine').setAttribute('x2', x_b + w2 + topLeft - 15)
-  document.getElementById('stateBoardLine').setAttribute('y1', y_b + topPosition - 50 - 5)
+  document.getElementById('stateBoardLine').setAttribute('x1', x_b + w2 + topLeft - 20)
+  document.getElementById('stateBoardLine').setAttribute('x2', x_b + w2 + topLeft - 20)
+  document.getElementById('stateBoardLine').setAttribute('y1', y_b + topPosition - 65)
   document.getElementById('stateBoardLine').setAttribute('y2', y_b + topPosition - 15)
-  if(gameState[currentState]['team'] == 'away'){
-    document.getElementById('actionBoard').setAttribute('x', x_b + w2 + topLeft + 10)
+  if(gameState[currentState]['team'] == 'away' && x2 < w1 * 0.35 ){
+    document.getElementById('actionBoard').setAttribute('x', x_b + w2 + topLeft + 20)
     document.getElementById('holder').setAttribute('text-anchor', 'start')
     document.getElementById('ballState').setAttribute('text-anchor', 'start')
-    document.getElementById('holder').setAttribute('x', x_b + w2 + topLeft + 20)
-    document.getElementById('ballState').setAttribute('x', x_b + w2 + topLeft + 20)
+    document.getElementById('holder').setAttribute('x', x_b + w2 + topLeft + 40)
+    document.getElementById('ballState').setAttribute('x', x_b + w2 + topLeft + 40)
     document.getElementById('stateBoardLine').setAttribute('stroke-opacity', 0.9)
-    document.getElementById('stateBoardLine').setAttribute('x1', x_b + w2 + topLeft + 15)
-    document.getElementById('stateBoardLine').setAttribute('x2', x_b + w2 + topLeft + 15)
+    document.getElementById('stateBoardLine').setAttribute('x1', x_b + w2 + topLeft + 30)
+    document.getElementById('stateBoardLine').setAttribute('x2', x_b + w2 + topLeft + 30)
   }  
+  if(gameState[currentState]['team'] == 'home' && x2 < - w1 * 0.35 ){
+    document.getElementById('actionBoard').setAttribute('x', x_b + w2 + topLeft + 20)
+    document.getElementById('holder').setAttribute('text-anchor', 'start')
+    document.getElementById('ballState').setAttribute('text-anchor', 'start')
+    document.getElementById('holder').setAttribute('x', x_b + w2 + topLeft + 40)
+    document.getElementById('ballState').setAttribute('x', x_b + w2 + topLeft + 40)
+    document.getElementById('stateBoardLine').setAttribute('stroke-opacity', 0.9)
+    document.getElementById('stateBoardLine').setAttribute('x1', x_b + w2 + topLeft + 30)
+    document.getElementById('stateBoardLine').setAttribute('x2', x_b + w2 + topLeft + 30)
+  }  
+  if( y2 < 0.1 * hp){
+    document.getElementById('actionBoard').setAttribute('y', y_b + topPosition + 5)
+    document.getElementById('holder').setAttribute('y', y_b + topPosition + 60)
+    document.getElementById('ballState').setAttribute('y', y_b + topPosition + 35)
+    document.getElementById('stateBoardLine').setAttribute('y1', y_b + topPosition + 15)
+    document.getElementById('stateBoardLine').setAttribute('y2', y_b + topPosition + 65)
+  }
+}
+function setHomeStateBoardXH(tmpX1) {
+  var homeStateWidth = document.getElementById('homeState').getBBox().width;
+  homeStateWidth = max(homeStateWidth, document.getElementById('homeName').getBBox().width) + 30
+  document.getElementById('homeStateBoard').setAttribute('x', tmpX1 - homeStateWidth + 10)
+  document.getElementById('homeStateBoard').setAttribute('width', homeStateWidth)
+}
+function setHomeStateBoardXA(tmpX1) {
+  var awayStateWidth = document.getElementById('awayState').getBBox().width;
+  awayStateWidth = max(awayStateWidth, document.getElementById('awayName').getBBox().width) + 30
+  document.getElementById('awayStateBoard').setAttribute('x', tmpX1 - 10)
+  document.getElementById('awayStateBoard').setAttribute('width', awayStateWidth)
+}
+function setHomeStateBoardY() {
 }
