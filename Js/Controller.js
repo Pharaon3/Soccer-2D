@@ -1,8 +1,9 @@
 var socket;
 
 var currentState = 0
-var currentTime;
-var ptime, setTimer, stopTime
+var updated_uts1 = 0, updated_uts = 0
+var currentTime, matchStartDate;
+var ptime, setTimer, stopTime = 0
 var topLeft = 58,
   topPosition = 128
 var pitchX = 885,
@@ -54,6 +55,32 @@ var isGoal
 
 function countdown() {
   var interval = setInterval(function () {
+    const currentDate = new Date;
+    updated_uts += timeInterval / 1000
+    if(setTimer) currentTime = updated_uts
+    else currentTime = stopTime
+    // var seconds = Math.floor(updated_uts / 1000)
+    var seconds = Math.floor(currentTime)
+    var minute = Math.floor(seconds / 60)
+    var second = seconds % 60
+    document.getElementById('time').textContent =
+      Math.floor(minute / 10) +
+      '' +
+      (minute % 10) +
+      ':' +
+      Math.floor(second / 10) +
+      '' +
+      (second % 10)
+    if(matchStartDate){
+      var seconds = Math.floor((matchStartDate - currentDate.getTime()) / 1000)
+      var second = seconds % 60
+      var minutes = Math.floor(seconds / 60)
+      var minute = minutes % 60
+      var hours = Math.floor(minutes / 60)
+      var hour = hours % 24
+      var days = Math.floor(hours / 24)
+      setCenterFrame('Not Started', days + 'D ' + hour + 'H ' + minute + 'M ' + second + 'S')
+    }
     //every 10ms
     time += timeInterval
     if (currentState == 0) {
@@ -68,20 +95,7 @@ function countdown() {
         stepInitialize()
       }
       t += 1 / 91
-      const currentDate = new Date;
-      if(setTimer) currentTime = currentDate.getTime() - ptime
-      else currentTime = stopTime
-      var seconds = Math.floor(currentTime / 1000)
-      var minute = Math.floor(seconds / 60)
-      var second = seconds % 60
-      document.getElementById('time').textContent =
-        Math.floor(minute / 10) +
-        '' +
-        (minute % 10) +
-        ':' +
-        Math.floor(second / 10) +
-        '' +
-        (second % 10)
+
       ballPosition()
       drawRect()
       displayState()
@@ -126,7 +140,6 @@ function load() {
   };
 
   socket.onmessage=function(e) {
-    console.log(e.data);
     var data = JSON.parse(e.data);
 
     if (data.r == 'event') {
@@ -134,7 +147,6 @@ function load() {
       handleEventData(data.d);
     }
   };
-
 }
 function bounceBall() {
   tt = t
@@ -629,10 +641,10 @@ function showState() {
     remove()
     if(gameState[currentState]['team'])showAction()
     if(gameState[currentState]['name'] == 'Yellow card'){
-      showAction()
+      setCenterFrame(gameState[currentState]['name'], gameState[currentState]['team'])
     }
     if(gameState[currentState]['name'] == 'Red card'){
-      showAction()
+      setCenterFrame(gameState[currentState]['name'], gameState[currentState]['team'])
     }
     if(gameState[currentState]['type'] == 'goal'){
       showAction()
@@ -650,8 +662,8 @@ function showState() {
     if(gameState[currentState]['type'] == 'substitution'){
       document.getElementById('substitutionOut').setAttribute('fill-opacity', 0.5)
       document.getElementById('substitutionIn').setAttribute('fill-opacity', 0.5)
-      if(gameState[currentState]['playerin']['name']) document.getElementById('substitutionInPlayer').textContent = gameState[currentState]['playerin']['name'] + 'IN'
-      if(gameState[currentState]['playerout']['name']) document.getElementById('substitutionOutPlayer').textContent = gameState[currentState]['playerout']['name'] + 'OUT'
+      if(gameState[currentState]['playerin']['name']) document.getElementById('substitutionInPlayer').textContent = gameState[currentState]['playerin']['name'] + ' IN'
+      if(gameState[currentState]['playerout']['name']) document.getElementById('substitutionOutPlayer').textContent = gameState[currentState]['playerout']['name'] + ' OUT'
     }
     if(gameState[currentState]['type'] == 'throwin'){
      showAction()
@@ -663,7 +675,8 @@ function showState() {
         document.getElementById('homeKickPolygon').points[0].x =
           x_b + w2 + topLeft
         document.getElementById('homeKickPolygon').points[0].y = y_b + topPosition
-        document.getElementById('homeState').textContent = gameState[currentState]['name']
+        center_text = capitalizeWords(gameState[currentState]['name'].split(" ")).join('')
+        document.getElementById('homeState').textContent = center_text
       } else {
         document.getElementById('awayKickPolygon').style.fill = 'url(#awayKick)'
         if(y2 < hp * 0.3 && x2 < - w1 * 0.3) document.getElementById('awayKickPolygon').style.fill = 'url(#awayTopKick)'
@@ -671,7 +684,8 @@ function showState() {
         document.getElementById('awayKickPolygon').points[0].x =
           x_b + w2 + topLeft
         document.getElementById('awayKickPolygon').points[0].y = y_b + topPosition
-        document.getElementById('awayState').textContent = gameState[currentState]['name']
+        center_text = capitalizeWords(gameState[currentState]['name'].split(" ")).join('')
+        document.getElementById('awayState').textContent = center_text 
       }
     }
     if(gameState[currentState]['type'] == 'freekick'){
@@ -683,7 +697,8 @@ function showState() {
         document.getElementById('homeKickPolygon').points[0].x =
           x_b + w2 + topLeft
         document.getElementById('homeKickPolygon').points[0].y = y_b + topPosition
-        document.getElementById('homeState').textContent = gameState[currentState]['name']
+        center_text = capitalizeWords(gameState[currentState]['name'].split(" ")).join('')
+        document.getElementById('homeState').textContent =center_text 
       } else {
         document.getElementById('awayKickPolygon').style.fill = 'url(#awayKick)'
         if(y2 < hp * 0.3 && x2 < - w1 * 0.3) document.getElementById('awayKickPolygon').style.fill = 'url(#awayTopKick)'
@@ -691,7 +706,8 @@ function showState() {
         document.getElementById('awayKickPolygon').points[0].x =
           x_b + w2 + topLeft
         document.getElementById('awayKickPolygon').points[0].y = y_b + topPosition
-        document.getElementById('awayState').textContent = gameState[currentState]['name']
+        center_text = capitalizeWords(gameState[currentState]['name'].split(" ")).join('')
+        document.getElementById('awayState').textContent = center_text
       }
     }
     if(gameState[currentState]['type'] == 'shotofftarget'){
@@ -704,7 +720,8 @@ function showState() {
         document.getElementById('homeKickPolygon').points[0].x =
           x_b + w2 + topLeft
         document.getElementById('homeKickPolygon').points[0].y = y_b + topPosition
-        document.getElementById('homeState').textContent = gameState[currentState]['name']
+        center_text = capitalizeWords(gameState[currentState]['name'].split(" ")).join('')
+        document.getElementById('homeState').textContent = center_text
       } else {
         document.getElementById('awayKickPolygon').style.fill = 'url(#awayKick)'
         if(y2 < hp * 0.3 && x2 < - w1 * 0.3) document.getElementById('awayKickPolygon').style.fill = 'url(#awayTopKick)'
@@ -712,7 +729,8 @@ function showState() {
         document.getElementById('awayKickPolygon').points[0].x =
           x_b + w2 + topLeft
         document.getElementById('awayKickPolygon').points[0].y = y_b + topPosition
-        document.getElementById('awayState').textContent = gameState[currentState]['name']
+        center_text = capitalizeWords(gameState[currentState]['name'].split(" ")).join('')
+        document.getElementById('awayState').textContent = center_text
       }
     }
     if(gameState[currentState]['type'] == 'shotontarget'){
@@ -724,7 +742,8 @@ function showState() {
         document.getElementById('homeKickPolygon').points[0].x =
           x_b + w2 + topLeft
         document.getElementById('homeKickPolygon').points[0].y = y_b + topPosition
-        document.getElementById('homeState').textContent = gameState[currentState]['name']
+        center_text = capitalizeWords(gameState[currentState]['name'].split(" ")).join('')
+        document.getElementById('homeState').textContent = center_text
       } else {
         document.getElementById('awayKickPolygon').style.fill = 'url(#awayKick)'
         if(y2 < hp * 0.3 && x2 < - w1 * 0.3) document.getElementById('awayKickPolygon').style.fill = 'url(#awayTopKick)'
@@ -732,7 +751,8 @@ function showState() {
         document.getElementById('awayKickPolygon').points[0].x =
           x_b + w2 + topLeft
         document.getElementById('awayKickPolygon').points[0].y = y_b + topPosition
-        document.getElementById('awayState').textContent = gameState[currentState]['name']
+        center_text = capitalizeWords(gameState[currentState]['name'].split(" ")).join('')
+        document.getElementById('awayState').textContent = center_text
       }
     }
     if(gameState[currentState]['type'] == 'goal_kick'){
@@ -744,7 +764,8 @@ function showState() {
         document.getElementById('homeKickPolygon').points[0].x =
           x_b + w2 + topLeft
         document.getElementById('homeKickPolygon').points[0].y = y_b + topPosition
-        document.getElementById('homeState').textContent = gameState[currentState]['name']
+        center_text = capitalizeWords(gameState[currentState]['name'].split(" ")).join('')
+        document.getElementById('homeState').textContent = center_text
       } else {
         document.getElementById('awayKickPolygon').style.fill = 'url(#awayKick)'
         if(y2 < hp * 0.3 && x2 < - w1 * 0.3) document.getElementById('awayKickPolygon').style.fill = 'url(#awayTopKick)'
@@ -752,35 +773,20 @@ function showState() {
         document.getElementById('awayKickPolygon').points[0].x =
           x_b + w2 + topLeft
         document.getElementById('awayKickPolygon').points[0].y = y_b + topPosition
-        document.getElementById('awayState').textContent = gameState[currentState]['name']
+        center_text = capitalizeWords(gameState[currentState]['name'].split(" ")).join('')
+        document.getElementById('awayState').textContent = center_text
       }
     }
     if(gameState[currentState]['type'] == 'match_ended'){
-      document.getElementById('center_rect').setAttribute('fill-opacity', 0.3)
-      document.getElementById('center_text').textContent = gameState[currentState]['name']
-      document.getElementById('ball').setAttribute('x', 100000)
-      document.getElementById('ball').setAttribute('y', 100000)
-      document.getElementById('ball_shadow').setAttribute('cx', 100000)
-      document.getElementById('ball_shadow').setAttribute('cy', 100000)
+      setCenterFrame('Match End', homeScore + ':' + awayScore)
     }
     if(gameState[currentState]['type'] == 'periodstart'){
-      document.getElementById('center_rect').setAttribute('fill-opacity', 0.3)
-      document.getElementById('center_text').textContent = gameState[currentState]['name']
-      document.getElementById('ball').setAttribute('x', 100000)
-      document.getElementById('ball').setAttribute('y', 100000)
-      document.getElementById('ball_shadow').setAttribute('cx', 100000)
-      document.getElementById('ball_shadow').setAttribute('cy', 100000)
-      // 
+      // setCenterFrame()
     }
     if(gameState[currentState]['type'] == 'periodscore'){
-      document.getElementById('center_rect').setAttribute('fill-opacity', 0.3)
-      document.getElementById('center_text').textContent = gameState[currentState]['name']
-      if(gameState[currentState]['name'] == '1st half') document.getElementById('center_text').textContent = 'Halftime'
-      document.getElementById('ball').setAttribute('x', 100000)
-      document.getElementById('ball').setAttribute('y', 100000)
-      document.getElementById('ball_shadow').setAttribute('cx', 100000)
-      document.getElementById('ball_shadow').setAttribute('cy', 100000)
-      // 
+      if(gameState[currentState]['name'] == '1st half'){
+        setCenterFrame('Halftime', homeScore + ':' + awayScore)
+      }
     }
     if(gameState[currentState]['type'] == 'corner'){
       showAction()
@@ -807,20 +813,7 @@ function showState() {
       document.getElementById('ball_shadow').setAttribute('cy', 100000)
     }
     if(gameState[currentState]['type'] == 'injury'){
-      document.getElementById('injury').style.display = 'block'
-      document.getElementById('center_rect').setAttribute('fill-opacity', 0.3)
-      document.getElementById('center_text').textContent = gameState[currentState]['name']
-      document.getElementById('bottom_rect').setAttribute('fill-opacity', 0.3)
-      document.getElementById('bottom_rect').setAttribute('height', 40)
-      document.getElementById('bottom_text').textContent = teamNames[gameState[currentState]['team']]
-      document.getElementById('ball').setAttribute('x', 100000)
-      document.getElementById('ball').setAttribute('y', 100000)
-      document.getElementById('ball_shadow').setAttribute('cx', 100000)
-      document.getElementById('ball_shadow').setAttribute('cy', 100000)
-      if(gameState[currentState]['player']['name']){
-        document.getElementById('bottom_rect').setAttribute('height', 70)
-        document.getElementById('bottom2_text').textContent = gameState[currentState]['player']['name']
-      }
+      setCenterFrame('injury', teamNames[gameState[currentState]['team']])
     }
   }
   else {
@@ -860,7 +853,8 @@ function mapY(x11, y11) {
   return y_11
 }
 function showAction() {
-  document.getElementById('ballState').textContent = gameState[currentState]['name']
+  center_text = capitalizeWords(gameState[currentState]['name'].split(" ")).join('')
+  document.getElementById('ballState').textContent = center_text
   document.getElementById('holder').textContent = teamNames[gameState[currentState]['team']].toUpperCase()
   var rectWidth = document.getElementById('ballState').getBBox().width;
   rectWidth = max(rectWidth, document.getElementById('holder').getBBox().width) + 40
@@ -925,6 +919,35 @@ function setRectY(positionY, team) {
   document.getElementById(team + 'StateLabels').setAttribute('y', positionY)
   statePositionY = positionY + 5
 }
+function setCenterFrame(title, content) {
+  document.getElementById('ballState').textContent = ''
+  document.getElementById('actionBoard').setAttribute('height', 0)
+    document.getElementById('stateBoardLine').setAttribute('stroke-opacity', 0)
+  document.getElementById('center_rect').setAttribute('fill-opacity', 0.5)
+  center_text = capitalizeWords(title.split(" ")).join(' ')
+  document.getElementById('center_text').textContent = center_text
+  document.getElementById('center_rect').setAttribute('height', 140)
+  document.getElementById('bottom_text').textContent = content
+  document.getElementById('ball').setAttribute('x', 100000)
+  document.getElementById('ball').setAttribute('y', 100000)
+  document.getElementById('ball_shadow').setAttribute('cx', 100000)
+  document.getElementById('ball_shadow').setAttribute('cy', 100000)
+}
+function setSideFrame() {
+  // body...
+}
+function setStateFrame() {
+  // body...
+}
+
+function capitalizeWords(arr) {
+  return arr.map(word => {
+    const firstLetter = word.charAt(0).toUpperCase();
+    const rest = word.slice(1).toLowerCase();
+
+    return firstLetter + rest;
+  });
+}
 
 // Get Data
 var dob = 0
@@ -944,7 +967,6 @@ function handleEventData(data) {
     data.events   => events (match_timelinedelta)
   */
 
-  console.log(data);
 
   if (data.info) {
     handleInfoData(data);
@@ -957,6 +979,10 @@ function handleEventData(data) {
     ptime = match['ptime'] * 1000 - 45 * 60 * 1000 * (match['p'] - 1) - 148 * 1000
     if(match['p'] == 31) setTimer = false
     if(match['p'] == 0) setTimer = false
+    if((match['updated_uts'] - match['ptime']) + 45 * 60 * (match['p'] - 1) != updated_uts1) {
+      updated_uts1 = (match['updated_uts'] - match['ptime']) + 45 * 60 * (match['p'] - 1)
+      updated_uts = updated_uts1
+    }
     var teams = match['teams']
     var hometeam = teams['home']
     if (hometeam['name']) hometeamname = hometeam['name']
@@ -977,10 +1003,15 @@ function handleEventData(data) {
     document.getElementById('awayTeamName').textContent = teamNames['away']
     document.getElementById('fade_homeTeamName').textContent = teamNames['home']
     document.getElementById('fade_awayTeamName').textContent = teamNames['away']
-    document.getElementById('period').textContent = match['status']['name']
-    if(match['status']['name'] == 'Halftime') stopTime = 45 * 60 * 1000;
-    if(match['status']['name'] == 'Not started') stopTime = 0 * 60 * 1000;
-    if(match['status']['name'] == 'Ended') stopTime = 90 * 60 * 1000;
+    center_text = capitalizeWords(match['status']['name'].split(" ")).join(' ')
+    document.getElementById('period').textContent = center_text
+    if(match['status']['name'] == 'Halftime') stopTime = 45 * 60;
+    if(match['status']['name'] == 'Not started') {
+      stopTime = 0 * 60;
+      document.getElementById('period').textContent = ''
+      document.getElementById('time').textContent = ''
+    }
+    if(match['status']['name'] == 'Ended') stopTime = 90 * 60;
     // Score Setting
     var result = match['result']
     if (result['home']) homeScore = result['home']
@@ -988,6 +1019,24 @@ function handleEventData(data) {
     // document.getElementById('score').textContent = homeScore + ':' + awayScore
     document.getElementById('score').textContent = homeScore + ' - ' + awayScore
     document.getElementById('fade_score').textContent = homeScore + ' - ' + awayScore
+
+    if(match['matchstatus'] == 'upcoming'){ //Match End
+      setCenterFrame('Match End', homeScore + ' : ' + awayScore)
+    }
+
+    if(match['status']['name'] == 'Not started'){ //Match End
+      const currentDate = new Date;
+      upCommingTime = currentDate.getTime() / 1000 - match['updated_uts']
+      // var seconds = Math.floor(updated_uts / 1000)
+      var seconds = Math.floor(upCommingTime)
+      var minute = Math.floor(seconds / 60)
+      var second = seconds % 60
+      // var date = new Date(match['_dt']['date'] + '4:52:48 PM UTC');
+      var matchDate = match['_dt']['date'].split("/")
+      var date = new Date(matchDate[1] + '/' + matchDate[0] + '/20' + matchDate[2] + ' ' + match['_dt']['time'] + ':00 UTC')
+
+      matchStartDate = date.getTime()
+    }
   }
 
   var events = data['events'] || {};
