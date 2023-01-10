@@ -3,6 +3,7 @@ var socket;
 var currentState = 0
 var updated_uts1 = 0, updated_uts = 0
 var currentTime, matchStartDate;
+var isLimitedCov = false;
 var ptime, setTimer, stopTime = 0
 var topLeft = 58,
   topPosition = 128
@@ -83,6 +84,9 @@ function countdown() {
       setCenterFrame('Not Started', days + 'D ' + hour + 'H ' + minute + 'M ' + second + 'S')
     }
     //every 10ms
+    if(isLimitedCov){
+      setCenterFrame('Limited Covarage', homeScore + ' - ' + awayScore)
+    }
     time += timeInterval
     if (currentState == 0) {
       if (gameState.length > 0) {
@@ -90,27 +94,32 @@ function countdown() {
         stepInitialize()
       }
     } else {
-      // Normal case
-      if (Math.floor(time) % 900 == 0) {
-        //every 500ms
-        stepInitialize()
+      if(isLimitedCov){
+        setCenterFrame('Limited Covarage', homeScore + ' - ' + awayScore)
       }
-      t += 1 / 91
-
-      ballPosition()
-      drawRect()
-      displayState()
-      if (x2 == x1 && y2 == y1) {
-        bounceBall()
-      } else {
-        if(gameState[currentState]['type']){
-          bounceBall();
-        } else {
-          kickBall()
+      else {
+        // Normal case
+        if (Math.floor(time) % 900 == 0) {
+          //every 500ms
+          stepInitialize()
         }
+        t += 1 / 91
+
+        ballPosition()
+        drawRect()
+        displayState()
+        if (x2 == x1 && y2 == y1) {
+          bounceBall()
+        } else {
+          if(gameState[currentState]['type']){
+            bounceBall();
+          } else {
+            kickBall()
+          }
+        }
+        drawTrack()
+        showState()
       }
-      drawTrack()
-      showState()
     }
   }, timeInterval)
 }
@@ -134,7 +143,7 @@ function load() {
   const urlParams = new URLSearchParams(window.location.search);
   const eventId = Number(urlParams.get('eventId'));
 
-  socket=new WebSocket("ws://62.112.8.78:9680");
+  socket=new WebSocket("wss://gamecast.betdata.pro:8443");
   socket.onopen=function(e) {
     //socket.send(JSON.stringify({r:"authenticate", a:{key:"*******"}}));
     socket.send(JSON.stringify({r:"subscribe_event", a:{id:eventId}}));
@@ -980,6 +989,10 @@ function handleEventData(data) {
   var match = data['match']
 
   if (match) {
+    if(match['coverage']['lmtsupport'] < 3 && match['p'] < 10 &&  match['p'] >0){
+      isLimitedCov = true
+    }
+    else isLimitedCov = false
     setTimer = true
     ptime = match['ptime'] * 1000 - 45 * 60 * 1000 * (match['p'] - 1) - 148 * 1000
     if(match['p'] == 31) setTimer = false
