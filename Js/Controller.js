@@ -157,7 +157,7 @@ function load() {
       handleEventData(data.d);
     }
   };
-  document.getElementById('link').setAttribute('href', '../Soccer-3D/index.html?eventId=' + eventId)
+  document.getElementById('link').setAttribute('href', '../soccer-3d/index.html?eventId=' + eventId)
 }
 function bounceBall() {
   tt = t
